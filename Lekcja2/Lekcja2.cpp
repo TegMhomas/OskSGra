@@ -31,7 +31,7 @@ int main()
 		{
 		case 1:
 		{
-			gracz1.tura();
+			gracz1.tura(gracz1);
 			break;
 		}
 

@@ -5,6 +5,7 @@
 #include "Zdarzenie.h"
 #include <vector>
 #include "Przedmioty.h"
+#include "Przeciwnik.h"
 
 
 using namespace std;
@@ -12,7 +13,7 @@ using namespace std;
 class Gracz
 {
 public:
-	int hp, gold, exp, mana, sila, level, moc_umiejetnosci, punkty_umiejetnosci;
+	int hp, gold, exp, mana, level, moc_umiejetnosci, punkty_umiejetnosci, obrazenia, pancerz;
 	bool zyje;
 	//lista przedmitow - todo
 	vector<Przedmioty> eq;
@@ -20,20 +21,26 @@ public:
 	Gracz()
 	{
 		hp = 100;
+		pancerz = 20;
 		mana = 100;
 		gold = 120;
 		exp = 0;
 		level = 1;
-		sila = 10;
+		//sila = 10;
+		obrazenia = 10;
+
 		punkty_umiejetnosci = 0;
 		moc_umiejetnosci = 5;
 		zyje = true;
 	}
-	void tura()
+	static void tura(Gracz g)
 	{
-		Zdarzenie z = Zdarzenie("Idziesz w prawo czy w lewo?", "1.W prawo", "2.W lewo", 1);
-		z.show();
-		konsekwencje(z);
+		Przedmioty przed = Przedmioty("miecz", 30);
+		Przeciwnik p1 = Przeciwnik(50, 3, 5, 10, przed, przed, przed);
+		p1.Walka(g);
+		//Zdarzenie z = Zdarzenie("Idziesz w prawo czy w lewo?", "1.W prawo", "2.W lewo", 1);
+		//z.show();
+	//	konsekwencje(z);
 	}
 
 	void smierc()
